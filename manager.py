@@ -12,7 +12,7 @@ class Manager:
 
     def start(self):
         while self.active:
-            Menu.menu()
+            Menu.show()
             self.execute()
 
     def execute(self):
