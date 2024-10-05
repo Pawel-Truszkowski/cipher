@@ -1,6 +1,7 @@
 
 from menu import Menu
 from cipher import ROT13
+from os import system
 
 
 class Manager:
@@ -22,6 +23,7 @@ class Manager:
                 self.rot13.text = input("Podaj wiadomość do zaszyfrowania: ")
                 self.encrypt()
             case 2:
+                self.rot13.text = input("Podaj szyfr: ")
                 self.decrypt()
             case 3:
                 self.save()
@@ -30,19 +32,21 @@ class Manager:
             case 5:
                 self.active = False
                 print("Zakończenie porgramu")
-            case _:
-                print("Nie wybrałeś odpowiedniej opcji.")
 
     def encrypt(self):
-        result = self.rot13.encrypt()
-        self.buffer.append(result)
+        encrypted_message = self.rot13.encrypt()
+        self.buffer.append(encrypted_message)
+        print(f"Zaszyfrowana wiadomość to: {encrypted_message}")
 
     def decrypt(self):
-        pass
+        decrypted_message = self.rot13.decrypt()
+        self.buffer.append(decrypted_message)
+        print(f"Odszyfrowana wiadomość to: {decrypted_message}")
 
     def save(self):
         pass
 
     def show_messages(self):
-        for message in self.buffer:
-            print(message)
+        print("\nActual encrypted messages:")
+        for index, elem in enumerate(self.buffer, 1):
+            print(index, elem)
