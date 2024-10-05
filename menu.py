@@ -1,22 +1,29 @@
 
 class Menu:
     @staticmethod
-    def show():
+    def show() -> None:
         print()
         print("   ==== MENU ====   ")
-        print("1. Szyfruj wiadomość")
-        print("2. Deszyfruj wiadomość")
-        print("3. Zapisz wiadomość do pliku")
-        print("4. Pokaż wiadomości")
-        print("5. Zakończ program")
+        print("1. Encrypt message")
+        print("2. Decrypt message")
+        print("3. Save to the file")
+        print("4. Show message")
+        print("5. End the program")
 
     @staticmethod
-    def get_choice():
-        choice = 0
+    def get_choice(message: str) -> int:
+        choice: int = 0
         try:
-            choice = int(input("Wybierz opcję [1-5]: "))
+            choice: int = int(input(message))
         except ValueError:
-            print("Nie wybrałeś odpowiedniej opcji. Spróbuj jeszcze raz.")
+            print("You didn't choose the right option. Try again.")
         finally:
             return choice
 
+    @staticmethod
+    def get_rot_method() -> tuple[str, int]:
+        message: str = input("Type the message: ")
+        print("1. ROT13")
+        print("2. ROT47")
+        choice = Menu.get_choice("Choose the method [1-2]: ")
+        return message, choice
