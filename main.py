@@ -1,8 +1,8 @@
 
 from manager import Manager
 
-
 def main():
+
     manager = Manager()
     manager.start()
 
