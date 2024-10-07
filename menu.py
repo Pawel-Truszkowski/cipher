@@ -6,9 +6,10 @@ class Menu:
         print("   ==== MENU ====   ")
         print("1. Encrypt message")
         print("2. Decrypt message")
-        print("3. Save to the file")
-        print("4. Show message")
-        print("5. End the program")
+        print("3. Show message")
+        print("4. Save to the file")
+        print("5. Read from file")
+        print("6. End the program")
 
     @staticmethod
     def get_choice(message: str) -> int:
