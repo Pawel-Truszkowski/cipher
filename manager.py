@@ -1,4 +1,3 @@
-
 from menu import Menu
 from message_manager import MessageManager
 from cipher_manager import CipherManager
@@ -16,17 +15,19 @@ class Manager:
             self.execute()
 
     def execute(self) -> None:
-        choice = Menu.get_choice("Choose the option [1-5]: ")
+        choice = Menu.get_choice("Choose the option [1-6]: ")
         match choice:
             case 1:
                 self.encrypt()
             case 2:
                 self.decrypt()
             case 3:
-                self.save()
-            case 4:
                 self.show_messages()
+            case 4:
+                self.save()
             case 5:
+                self.read()
+            case 6:
                 self.active = False
                 print("\nGood bye!")
 
@@ -42,8 +43,12 @@ class Manager:
         self.message_manager.add_message(decrypted_message)
         print(f"Decrypted message is: {decrypted_message}")
 
-    def save(self) -> None:
-        self.message_manager.save()
-
     def show_messages(self) -> None:
         self.message_manager.show_messages()
+
+    def save(self) -> None:
+        self.message_manager.save_message()
+
+    def read(self) -> None:
+        self.message_manager.read_message()
+
