@@ -1,27 +1,22 @@
-from cipher import ROT13, ROT47
+from cipher import Cipher
+from  typing import List
 
 
 class CipherManager:
-    def __init__(self):
-        self.rot13 = ROT13()
-        self.rot47 = ROT47()
+    def __init__(self, ciphers: List[Cipher]):
+        self.ciphers = ciphers
 
-    def encrypt(self, message: str, cipher_type: int) -> str:
-        if cipher_type == 1:
-            self.rot13.text = message
-            return self.rot13.encrypt()
-        elif cipher_type == 2:
-            self.rot47.text = message
-            return self.rot47.encrypt()
-        else:
-            raise ValueError("Invalid cipher type selected.")
+    def encrypt(self, message: str, cipher_type: str) -> str:
+        for cipher in self.ciphers:
+            if cipher_type == cipher.rot_type:
+                cipher.text = message
+                return cipher.encrypt()
 
     def decrypt(self, message: str, cipher_type: int) -> str:
-        if cipher_type == 1:
-            self.rot13.text = message
-            return self.rot13.decrypt()
-        elif cipher_type == 2:
-            self.rot47.text = message
-            return self.rot47.decrypt()
-        else:
-            raise ValueError("Invalid cipher type selected.")
+        for cipher in self.ciphers:
+            if cipher_type == cipher.rot_type:
+                cipher.text = message
+                return cipher.decrypt()
+
+
+

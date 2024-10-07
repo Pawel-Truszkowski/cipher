@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from codecs import encode, decode
-from typing import List
 
 
 @dataclass
@@ -12,11 +11,11 @@ class Cipher(ABC):
 
     @abstractmethod
     def encrypt(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def decrypt(self):
-        pass
+        raise NotImplementedError
 
 
 class ROT13(Cipher):
