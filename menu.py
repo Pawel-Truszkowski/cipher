@@ -22,9 +22,13 @@ class Menu:
             return choice
 
     @staticmethod
-    def get_rot_method() -> tuple[str, int]:
+    def get_rot_method() -> tuple[str, str]:
         message: str = input("Type the message: ")
         print("1. ROT13")
         print("2. ROT47")
         choice = Menu.get_choice("Choose the method [1-2]: ")
+        if choice == 1:
+            choice = 'rot_13'
+        else:
+            choice = 'rot_47'
         return message, choice

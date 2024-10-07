@@ -4,18 +4,19 @@ from cipher_manager import CipherManager
 
 
 class Manager:
-    def __init__(self):
+    def __init__(self, menu: Menu, message_manager: MessageManager, cipher_manager: CipherManager):
         self.active = True
-        self.message_manager = MessageManager()
-        self.cipher_manager = CipherManager()
+        self.menu = menu
+        self.message_manager = message_manager
+        self.cipher_manager = cipher_manager
 
     def start(self) -> None:
         while self.active:
-            Menu.show()
+            self.menu.show()
             self.execute()
 
     def execute(self) -> None:
-        choice = Menu.get_choice("Choose the option [1-6]: ")
+        choice = self.menu.get_choice("Choose the option [1-6]: ")
         match choice:
             case 1:
                 self.encrypt()
@@ -32,7 +33,7 @@ class Manager:
                 print("\nGood bye!")
 
     def encrypt(self) -> None:
-        message, cipher_type = Menu.get_rot_method()
+        message, cipher_type = self.menu.get_rot_method()
         encrypted_message = self.cipher_manager.encrypt(message, cipher_type)
         self.message_manager.add_message(encrypted_message)
         print(f"Encrypted message is: {encrypted_message}")

@@ -4,14 +4,14 @@ from abc import ABC, abstractmethod
 class FileHandler(ABC):
     @abstractmethod
     def save(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def read(self):
-        pass
+        raise NotImplementedError
 
 
-class TextFormatFile(FileHandler):
+class TextFileHandler(FileHandler):
 
     FILE_NAME = "messages.txt"
 
@@ -36,7 +36,7 @@ class TextFormatFile(FileHandler):
             print(line)
 
 
-class JSONFormatFile(FileHandler):
+class JSONFileHandler(FileHandler):
     def save(self):
         pass
 

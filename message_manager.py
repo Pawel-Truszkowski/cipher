@@ -1,10 +1,10 @@
-from file_handler import TextFormatFile, JSONFormatFile
+from file_handler import FileHandler
 
 
 class MessageManager:
-    def __init__(self):
+    def __init__(self, file_handler: FileHandler):
         self.buffer = []
-        self.file_handler = TextFormatFile()
+        self.file_handler = file_handler
 
     def add_message(self, message: str) -> None:
         self.buffer.append(message)
@@ -17,8 +17,11 @@ class MessageManager:
             print(f"{index}. {elem}")
 
     def save_message(self) -> None:
-        for message in self.buffer:
-            self.file_handler.save(message)
+        if self.buffer:
+            for message in self.buffer:
+                self.file_handler.save(message)
+        else:
+            print("Nothing to save.")
 
     def read_message(self) -> None:
         self.file_handler.read()
