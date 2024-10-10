@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class FileHandler(ABC):
     @abstractmethod
-    def save(self):
+    def save(self, message: str):
         raise NotImplementedError
 
     @abstractmethod
@@ -12,22 +12,19 @@ class FileHandler(ABC):
 
 
 class TextFileHandler(FileHandler):
-
     FILE_NAME = "messages.txt"
 
     def save(self, message: str) -> None:
-        file_name = "messages.txt"
         try:
-            with open(file_name, 'a') as file:
+            with open(self.FILE_NAME, 'a') as file:
                 file.write(f"{message}\n")
-            print(f"Messages saved to {file_name}")
+            print(f"Messages saved to {self.FILE_NAME}")
         except Exception as e:
             print(f"An error occurred while saving to file: {e}")
 
     def read(self):
-        file_name = "messages.txt"
         try:
-            with open(file_name, 'r') as file:
+            with open(self.FILE_NAME, 'r') as file:
                 lines = file.readlines()
         except Exception as e:
             print(f"An error occurred while saving to file: {e}")
@@ -37,7 +34,7 @@ class TextFileHandler(FileHandler):
 
 
 class JSONFileHandler(FileHandler):
-    def save(self):
+    def save(self, message: str):
         pass
 
     def read(self):

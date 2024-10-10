@@ -1,13 +1,29 @@
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 from codecs import encode, decode
 
 
-@dataclass
+ROT13 = 'rot_13'
+ROT47 = 'rot_47'
+ROTS = (ROT13, ROT47)
+
+
 class Cipher(ABC):
-    text: str = ""
-    rot_type: str = None
-    status: str = ""
+    STATUS__DECRYPTED = 'decrypted'
+    STATUS__ENCRYPTED = 'encrypted'
+
+    def __init__(self, text: str = '', status: str = ''):
+        self.text = text
+        self.status = status
+        self._set_rot_type()
+
+    @property
+    @abstractmethod
+    def rot_type(self):
+        raise NotImplementedError
+
+    @abstractmethod
+    def _set_rot_type(self):
+        raise NotImplementedError
 
     @abstractmethod
     def encrypt(self):
@@ -19,9 +35,15 @@ class Cipher(ABC):
 
 
 class ROT13(Cipher):
-    def __init__(self):
-        super().__init__()
-        self.rot_type = 'rot_13'
+    def __init__(self, text: str = '', status: str = ''):
+        super().__init__(text, status)
+
+    @property
+    def rot_type(self):
+        return self._rot_type
+
+    def _set_rot_type(self):
+        self._rot_type = ROT13
 
     def encrypt(self) -> str:
         encrypted_text = encode(self.text, 'rot_13')
@@ -35,9 +57,15 @@ class ROT13(Cipher):
 
 
 class ROT47(Cipher):
-    def __init__(self):
-        super().__init__()
-        self.rot_type = 'rot_47'
+    def __init__(self, text: str = '', status: str = ''):
+        super().__init__(text, status)
+
+    @property
+    def rot_type(self):
+        return self._rot_type
+
+    def _set_rot_type(self):
+        self._rot_type = ROT47
 
     def encrypt(self) -> str:
         x = []
