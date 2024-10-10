@@ -1,9 +1,9 @@
-from cipher import ROT13, ROT47
-from file_handler import TextFileHandler
-from cipher_manager import CipherManager
-from message_manager import MessageManager
-from manager import Manager
-from menu import Menu
+from src.features.cipher import ROT13, ROT47
+from src.features.file_handler import TextFileHandler
+from src.managers.cipher_manager import CipherManager
+from src.managers.message_manager import MessageManager
+from src.managers.manager import Manager
+from src.features.menu import Menu
 
 
 def main():
