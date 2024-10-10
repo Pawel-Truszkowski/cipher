@@ -1,4 +1,4 @@
-from file_handler import FileHandler
+from src.features.file_handler import FileHandler
 
 
 class MessageManager:

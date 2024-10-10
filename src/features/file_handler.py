@@ -12,7 +12,7 @@ class FileHandler(ABC):
 
 
 class TextFileHandler(FileHandler):
-    FILE_NAME = "messages.txt"
+    FILE_NAME = "src/files/messages.txt"
 
     def save(self, message: str) -> None:
         try:
@@ -27,10 +27,13 @@ class TextFileHandler(FileHandler):
             with open(self.FILE_NAME, 'r') as file:
                 lines = file.readlines()
         except Exception as e:
-            print(f"An error occurred while saving to file: {e}")
+            print(f"An error occurred while reading the file: {e}")
 
-        for line in lines:
-            print(line)
+        if lines:
+            for line in lines:
+                print(line)
+        else:
+            print("Can't read the file.")
 
 
 class JSONFileHandler(FileHandler):

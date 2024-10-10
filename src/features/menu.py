@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class Menu:
     @staticmethod
     def show() -> None:
@@ -10,7 +11,7 @@ class Menu:
         print("3. Show message")
         print("4. Save to the file")
         print("5. Read from file")
-        print("6. End the program")
+        print("6. End the program\n")
 
     @staticmethod
     def get_choice(message: str) -> Optional[int]:
@@ -35,5 +36,5 @@ class Menu:
         elif choice == 2:
             choice = 'rot_47'
         else:
-            print('invalid value try agian')
+            print('invalid value. Please try again!')
         return message, choice

@@ -1,5 +1,5 @@
-from cipher import Cipher
-from typing import List, Dict
+from src.features.cipher import Cipher
+from typing import Dict
 
 
 class CipherManager:

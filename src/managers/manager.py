@@ -1,6 +1,6 @@
-from menu import Menu
-from message_manager import MessageManager
-from cipher_manager import CipherManager
+from src.features.menu import Menu
+from .message_manager import MessageManager
+from .cipher_manager import CipherManager
 
 
 class Manager:
