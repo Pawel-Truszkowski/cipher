@@ -46,14 +46,14 @@ class ROT13(Cipher):
         self._rot_type = ROT13
 
     def encrypt(self) -> str:
-        encrypted_text = encode(self.text, 'rot_13')
-        self.status = "encrypted"
-        return encrypted_text
+        self.text = encode(self.text, 'rot_13')
+        self.status = self.STATUS__ENCRYPTED
+        return self.text
 
     def decrypt(self) -> str:
-        decrypted_text = decode(self.text, 'rot_13')
-        self.status = "decrypted"
-        return decrypted_text
+        self.text = decode(self.text, 'rot_13')
+        self.status = self.STATUS__DECRYPTED
+        return self.text
 
 
 class ROT47(Cipher):
@@ -75,9 +75,11 @@ class ROT47(Cipher):
                 x.append(chr(33 + ((char + 14) % 94)))
             else:
                 x.append(self.text[i])
-        self.status = "encrypted"
-        return ''.join(x)
+        self.status = self.STATUS__ENCRYPTED
+        self.text = ''.join(x)
+        return self.text
 
     def decrypt(self) -> str:
-        self.status = "decrypted"
-        return self.encrypt()
+        self.text = self.encrypt()
+        self.status = self.STATUS__DECRYPTED
+        return self.text
