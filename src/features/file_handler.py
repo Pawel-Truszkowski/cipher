@@ -12,7 +12,7 @@ class FileHandler(ABC):
 
 
 class TextFileHandler(FileHandler):
-    FILE_NAME = "src/files/messages.txt"
+    FILE_NAME = "files/messages.txt"
 
     def save(self, message: str) -> None:
         try:
@@ -30,6 +30,7 @@ class TextFileHandler(FileHandler):
             print(f"An error occurred while reading the file: {e}")
 
         if lines:
+            print("Messages from file: \n")
             for line in lines:
                 print(line)
         else:

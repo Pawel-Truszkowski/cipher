@@ -16,7 +16,7 @@ class Manager:
             self.execute()
 
     def execute(self) -> None:
-        choice = self.menu.get_choice("Choose the option [1-6]: ")
+        choice = self.menu.get_choice("Choose the option [1-6]: ", 1, 6)
         match choice:
             case 1:
                 self._encrypt()
