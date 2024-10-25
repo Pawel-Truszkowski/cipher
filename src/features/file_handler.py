@@ -1,3 +1,4 @@
+import json
 from abc import ABC, abstractmethod
 
 
@@ -38,9 +39,19 @@ class TextFileHandler(FileHandler):
 
 
 class JSONFileHandler(FileHandler):
-    def save(self, message: str):
-        pass
+    def save(self, message: dict[str, str]):
+        try:
+            with open('json_data', w) as outfile:
+                json.dump(message)
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}")
+            raise
 
     def read(self):
-        pass
-
+        try:
+            with open('json_data.json') as json_file:
+                data = json.load(json_file)
+                print(data)
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}")
+            raise
