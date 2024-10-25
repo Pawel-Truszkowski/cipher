@@ -14,7 +14,6 @@ class CipherManager:
         cipher.text = message
         return cipher.encrypt()
 
-
     def decrypt(self, message: str, cipher_type: str) -> str:
         if cipher_type not in self.cipher_map:
             raise ValueError(f"Unsupported cipher type: {cipher_type}")
