@@ -1,28 +1,30 @@
-from src.features.file_handler import FileHandler
+from src.features.file_handler import FileHandler, TextFileHandler, JSONFileHandler
 
 
 class MessageManager:
     def __init__(self, file_handler: FileHandler) -> None:
         self.file_handler = file_handler
-        self.buffer: list[str] = []
+        self.json = JSONFileHandler()
+        self.buffer = {}
 
-    def add_message(self, message: str) -> None:
-        self.buffer.append(message)
+    def add_message(self, original_message: str, converted_message: str, rot_type: str) -> None:
+        self.buffer[original_message] = [converted_message, rot_type]
 
     def show_messages(self) -> None:
-        print("\nActual encrypted messages:")
+        print("\nActual converted messages:")
         if not self.buffer:
             print("Empty")
         else:
-            for index, elem in enumerate(self.buffer, start=1):
-                print(f"{index}. {elem}")
+            for i, (key, value) in enumerate(self.buffer.items(), start=1):
+                print(f"{i}. Message: '{key}', Converted: '{value[0]}', Cipher type: '{value[1]}'")
 
     def save_message(self) -> None:
         if not self.buffer:
             print("Nothing to save.")
         else:
-            for message in self.buffer:
-                self.file_handler.save(message)
+            self.file_handler.save(self.buffer)
+            self.json.save(self.buffer)
 
     def read_message(self) -> None:
         self.file_handler.read()
+        self.json.read()

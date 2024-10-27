@@ -1,9 +1,10 @@
+import json
 from abc import ABC, abstractmethod
 
 
 class FileHandler(ABC):
     @abstractmethod
-    def save(self, message: str):
+    def save(self, data: dict):
         raise NotImplementedError
 
     @abstractmethod
@@ -14,11 +15,11 @@ class FileHandler(ABC):
 class TextFileHandler(FileHandler):
     FILE_NAME = "files/messages.txt"
 
-    def save(self, message: str) -> None:
+    def save(self, data: dict[str, str, str]) -> None:
         try:
             with open(self.FILE_NAME, 'a') as file:
-                file.write(f"{message}\n")
-            print(f"Messages saved to {self.FILE_NAME}")
+                file.write(f"{data}\n")
+            print(f"Message saved to {self.FILE_NAME}")
         except Exception as e:
             print(f"An error occurred while saving to file: {e}")
 
@@ -38,9 +39,35 @@ class TextFileHandler(FileHandler):
 
 
 class JSONFileHandler(FileHandler):
-    def save(self, message: str):
-        pass
+    FILE_NAME = "files/messages.json"
+
+    def save(self, data: dict[str, str]):
+        try:
+            existing_data = self.read_all() or []
+            existing_data.append(data)
+            with open(self.FILE_NAME, 'w') as outfile:
+                json.dump(existing_data, outfile)
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}")
 
     def read(self):
-        pass
+        data = self.read_all()
+        if data:
+            print("Messages from file:")
+            for item in data:
+                print(item)
+        else:
+            print("No messages to display.")
+
+
+    def read_all(self):
+        try:
+            with open(self.FILE_NAME, 'r') as json_file:
+                return json.load(json_file)
+        except json.JSONDecodeError as err:
+            print(f"Error reading JSON: {err}")
+            return []
+        except FileNotFoundError:
+            print("File not found, returning empty data.")
+            return []
 

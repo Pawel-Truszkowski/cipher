@@ -26,20 +26,15 @@ class Menu:
             return choice
 
     @staticmethod
-    def get_message() -> str:
-        message: str = input("Type the message: ")
-        return message
-
-    @staticmethod
-    def get_rot_method() -> tuple[str, str]:
-        message: str = input("Type the message: ")
+    def get_cipher_type() -> str:
         print("1. ROT13")
         print("2. ROT47")
-        choice = Menu.get_choice("Choose the method [1-2]: ", start=1, end=2)
+        choice = Menu.get_choice("Choose the cipher type [1-2]: ", start=1, end=2)
+        rot_type = None
         if choice == 1:
-            choice = 'rot_13'
+            rot_type = 'rot_13'
         elif choice == 2:
-            choice = 'rot_47'
+            rot_type = 'rot_47'
         else:
             print('invalid value. Please try again!')
-        return message, choice
+        return rot_type

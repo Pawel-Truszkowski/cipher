@@ -33,15 +33,17 @@ class Manager:
                 print("\nGood bye!")
 
     def _encrypt(self) -> None:
-        message, cipher_type = self.menu.get_rot_method()
-        encrypted_message = self.cipher_manager.encrypt(message, cipher_type)
-        self.message_manager.add_message(encrypted_message)
+        original_message = self.get_message()
+        cipher_type = self.menu.get_cipher_type()
+        encrypted_message = self.cipher_manager.encrypt(original_message, cipher_type)
+        self.message_manager.add_message(original_message, encrypted_message, cipher_type)
         print(f"Encrypted message is: {encrypted_message}")
 
     def _decrypt(self) -> None:
-        message, cipher_type = Menu.get_rot_method()
-        decrypted_message = self.cipher_manager.decrypt(message, cipher_type)
-        self.message_manager.add_message(decrypted_message)
+        original_message = self.get_message()
+        cipher_type = self.menu.get_cipher_type()
+        decrypted_message = self.cipher_manager.decrypt(original_message, cipher_type)
+        self.message_manager.add_message(original_message, decrypted_message, cipher_type)
         print(f"Decrypted message is: {decrypted_message}")
 
     def _show_messages(self) -> None:
@@ -53,3 +55,7 @@ class Manager:
     def _read(self) -> None:
         self.message_manager.read_message()
 
+    @staticmethod
+    def get_message() -> str:
+        message: str = input("Type the message: ")
+        return message
