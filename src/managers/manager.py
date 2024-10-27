@@ -33,17 +33,17 @@ class Manager:
                 print("\nGood bye!")
 
     def _encrypt(self) -> None:
-        message = self.get_message()
+        original_message = self.get_message()
         cipher_type = self.menu.get_cipher_type()
-        encrypted_message = self.cipher_manager.encrypt(message, cipher_type)
-        self.message_manager.add_message(encrypted_message)
+        encrypted_message = self.cipher_manager.encrypt(original_message, cipher_type)
+        self.message_manager.add_message(original_message, encrypted_message, cipher_type)
         print(f"Encrypted message is: {encrypted_message}")
 
     def _decrypt(self) -> None:
-        message = self.get_message()
+        original_message = self.get_message()
         cipher_type = self.menu.get_cipher_type()
-        decrypted_message = self.cipher_manager.decrypt(message, cipher_type)
-        self.message_manager.add_message(decrypted_message)
+        decrypted_message = self.cipher_manager.decrypt(original_message, cipher_type)
+        self.message_manager.add_message(original_message, decrypted_message, cipher_type)
         print(f"Decrypted message is: {decrypted_message}")
 
     def _show_messages(self) -> None:
