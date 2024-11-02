@@ -38,7 +38,7 @@ class TestRot13:
 
     def test_invalid_input_type(self, rot13):
         with pytest.raises(TypeError):
-            rot13.text = 123  # Or any other invalid input
+            rot13.text = 123
             rot13.encrypt()
 
 
@@ -69,6 +69,17 @@ class TestRot47:
         assert decrypt_text == expected_decrypted_text
         assert rot47.status == 'decrypted'
 
+    def test_multiple_encrypt_decrypt_calls(self, rot47):
+        rot47.text = 'message'
+        encrypted = rot47.encrypt()
+        decrypted = rot47.decrypt()
+        assert encrypted == '>6DD286'
+        assert decrypted == 'message'
+
+    def test_invalid_input_type(self, rot47):
+        with pytest.raises(TypeError):
+            rot47.text = 123
+            rot47.encrypt()
 #
 # from unittest.mock import patch
 # ######################################

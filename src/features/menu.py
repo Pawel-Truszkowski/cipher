@@ -15,15 +15,14 @@ class Menu:
 
     @staticmethod
     def get_choice(message: str, start: int, end: int) -> Optional[int]:
-        choice: Optional[int] = None
-        try:
-            choice: int = int(input(message))
-            if not start <= choice <= end:
-                raise ValueError
-        except ValueError:
-            print("You didn't choose the right option. Try again.")
-        finally:
-            return choice
+        while True:
+            try:
+                choice = int(input(message))
+                if start <= choice <= end:
+                    return choice
+                print(f"Please enter a number between {start} and {end}.")
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
 
     @staticmethod
     def get_cipher_type() -> str:
