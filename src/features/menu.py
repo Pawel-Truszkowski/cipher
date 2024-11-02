@@ -31,9 +31,9 @@ class Menu:
         choice = Menu.get_choice("Choose the cipher type [1-2]: ", start=1, end=2)
         rot_type = None
         if choice == 1:
-            rot_type = 'rot_13'
+            rot_type = "rot_13"
         elif choice == 2:
-            rot_type = 'rot_47'
+            rot_type = "rot_47"
         else:
-            print('invalid value. Please try again!')
+            print("invalid value. Please try again!")
         return rot_type

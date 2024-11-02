@@ -1,4 +1,4 @@
-from src.features.file_handler import FileHandler, TextFileHandler, JSONFileHandler
+from src.features.file_handler import FileHandler, JSONFileHandler
 
 
 class MessageManager:
@@ -7,7 +7,9 @@ class MessageManager:
         self.json = JSONFileHandler()
         self.buffer = {}
 
-    def add_message(self, original_message: str, converted_message: str, rot_type: str) -> None:
+    def add_message(
+        self, original_message: str, converted_message: str, rot_type: str
+    ) -> None:
         self.buffer[original_message] = [converted_message, rot_type]
 
     def show_messages(self) -> None:
@@ -16,7 +18,9 @@ class MessageManager:
             print("Empty")
         else:
             for i, (key, value) in enumerate(self.buffer.items(), start=1):
-                print(f"{i}. Message: '{key}', Converted: '{value[0]}', Cipher type: '{value[1]}'")
+                print(
+                    f"{i}. Message: '{key}', Converted: '{value[0]}', Cipher type: '{value[1]}'"
+                )
 
     def save_message(self) -> None:
         if not self.buffer:
