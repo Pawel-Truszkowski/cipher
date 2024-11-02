@@ -21,5 +21,3 @@ class CipherManager:
         cipher = self.cipher_map[cipher_type]
         cipher.text = message
         return cipher.decrypt()
-
-

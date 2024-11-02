@@ -15,17 +15,19 @@ class FileHandler(ABC):
 class TextFileHandler(FileHandler):
     FILE_NAME = "files/messages.txt"
 
-    def save(self, data: dict[str, str, str]) -> None:
+    def save(self, data: dict[str, str], file_name=None) -> None:
+        file_name = file_name or self.FILE_NAME
         try:
-            with open(self.FILE_NAME, 'a') as file:
+            with open(file_name, "w+") as file:
                 file.write(f"{data}\n")
-            print(f"Message saved to {self.FILE_NAME}")
+            print(f"Message saved to {file_name}")
         except Exception as e:
             print(f"An error occurred while saving to file: {e}")
 
-    def read(self):
+    def read(self, file_name=None):
+        file_name = file_name or self.FILE_NAME
         try:
-            with open(self.FILE_NAME, 'r') as file:
+            with open(file_name, "r") as file:
                 lines = file.readlines()
         except Exception as e:
             print(f"An error occurred while reading the file: {e}")
@@ -45,8 +47,8 @@ class JSONFileHandler(FileHandler):
         try:
             existing_data = self.read_all() or []
             existing_data.append(data)
-            with open(self.FILE_NAME, 'w') as outfile:
-                json.dump(existing_data, outfile)
+            with open(self.FILE_NAME, "w") as outfile:
+                json.dump(existing_data, outfile, indent=4)
         except Exception as err:
             print(f"Unexpected {err=}, {type(err)=}")
 
@@ -59,10 +61,9 @@ class JSONFileHandler(FileHandler):
         else:
             print("No messages to display.")
 
-
     def read_all(self):
         try:
-            with open(self.FILE_NAME, 'r') as json_file:
+            with open(self.FILE_NAME, "r") as json_file:
                 return json.load(json_file)
         except json.JSONDecodeError as err:
             print(f"Error reading JSON: {err}")
@@ -70,4 +71,3 @@ class JSONFileHandler(FileHandler):
         except FileNotFoundError:
             print("File not found, returning empty data.")
             return []
-

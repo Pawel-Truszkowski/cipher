@@ -25,18 +25,24 @@ class TestMessageManager:
 
     def test_show_message_should_print_when_buffer_is_not_empty(self, message_manager):
         message_manager.add_message("hello", "uryyb", "rot_13")
-        with patch('builtins.print') as mock_print:
+        with patch("builtins.print") as mock_print:
             message_manager.show_messages()
-            mock_print.assert_any_call("1. Message: 'hello', Converted: 'uryyb', Cipher type: 'rot_13'")
+            mock_print.assert_any_call(
+                "1. Message: 'hello', Converted: 'uryyb', Cipher type: 'rot_13'"
+            )
 
-    def test_show_message_should_print_empty_when_buffer_is_empty(self, message_manager):
-        with patch('builtins.print') as mock_print:
+    def test_show_message_should_print_empty_when_buffer_is_empty(
+        self, message_manager
+    ):
+        with patch("builtins.print") as mock_print:
             message_manager.show_messages()
             mock_print.assert_any_call("\nActual converted messages:")
             mock_print.assert_any_call("Empty")
 
-    def test_save_message_saves_when_buffer_is_not_empty(self, message_manager, mock_file_handler, mock_json):
-        with patch.object(message_manager, 'json', mock_json):
+    def test_save_message_saves_when_buffer_is_not_empty(
+        self, message_manager, mock_file_handler, mock_json
+    ):
+        with patch.object(message_manager, "json", mock_json):
             message_manager.add_message("hello", "uryyb", "rot_13")
             message_manager.save_message()
 
@@ -44,7 +50,7 @@ class TestMessageManager:
             mock_json.save.assert_called_once_with(message_manager.buffer)
 
     def test_save_message_does_not_save_when_buffer_is_empty(self, message_manager):
-        with patch('builtins.print') as mock_print:
+        with patch("builtins.print") as mock_print:
             message_manager.save_message()
             mock_print.assert_any_call("Nothing to save.")
 
@@ -54,5 +60,3 @@ class TestMessageManager:
         message_manager.read_message()
         mock_file_handler.read.assert_called_once()
         mock_json.read.assert_called_once()
-
-

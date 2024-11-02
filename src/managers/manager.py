@@ -4,7 +4,9 @@ from .cipher_manager import CipherManager
 
 
 class Manager:
-    def __init__(self, menu: Menu, message_manager: MessageManager, cipher_manager: CipherManager):
+    def __init__(
+        self, menu: Menu, message_manager: MessageManager, cipher_manager: CipherManager
+    ):
         self.menu = menu
         self.message_manager = message_manager
         self.cipher_manager = cipher_manager
@@ -36,14 +38,18 @@ class Manager:
         original_message = self.get_message()
         cipher_type = self.menu.get_cipher_type()
         encrypted_message = self.cipher_manager.encrypt(original_message, cipher_type)
-        self.message_manager.add_message(original_message, encrypted_message, cipher_type)
+        self.message_manager.add_message(
+            original_message, encrypted_message, cipher_type
+        )
         print(f"Encrypted message is: {encrypted_message}")
 
     def _decrypt(self) -> None:
         original_message = self.get_message()
         cipher_type = self.menu.get_cipher_type()
         decrypted_message = self.cipher_manager.decrypt(original_message, cipher_type)
-        self.message_manager.add_message(original_message, decrypted_message, cipher_type)
+        self.message_manager.add_message(
+            original_message, decrypted_message, cipher_type
+        )
         print(f"Decrypted message is: {decrypted_message}")
 
     def _show_messages(self) -> None:

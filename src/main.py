@@ -7,11 +7,13 @@ from src.features.menu import Menu
 
 
 def main():
-    cipher_manager = CipherManager(cipher_map={'rot_13': ROT13(), 'rot_47': ROT47()})
+    cipher_manager = CipherManager(cipher_map={"rot_13": ROT13(), "rot_47": ROT47()})
     message_manager = MessageManager(file_handler=TextFileHandler())
-    manager = Manager(menu=Menu(), cipher_manager=cipher_manager, message_manager=message_manager)
+    manager = Manager(
+        menu=Menu(), cipher_manager=cipher_manager, message_manager=message_manager
+    )
     manager.start()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
