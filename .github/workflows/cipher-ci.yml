@@ -33,8 +33,8 @@ jobs:
       continue-on-error: true
     - name: Run Ruff
       run: |
-        ruff src
-        ruff tests
+        ruff check src
+        ruff check tests
     - name: Test with pytest
       run: |
         pytest
