@@ -29,7 +29,7 @@ jobs:
         bandit -c pyproject.toml -r .
     - name: Run Safety
       run: |
-        run safety check
+        safety check
       continue-on-error: true
     - name: Run Ruff
       run: |
