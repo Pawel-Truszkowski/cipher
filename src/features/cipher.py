@@ -8,7 +8,8 @@ ROTS = (ROT13, ROT47)
 
 
 class Cipher(ABC):
-    """Abstract base class for ciphers.
+    """
+    Abstract base class for ciphers.
 
     Attributes:
         text (str): The message to be encrypted or decrypted.
@@ -19,7 +20,8 @@ class Cipher(ABC):
     STATUS__ENCRYPTED = "encrypted"
 
     def __init__(self, text: str = "", status: str = ""):
-        """Initialize the cipher with the given text and status.
+        """
+        Initialize the cipher with the given text and status.
 
         Args:
             text (str): The message to be encrypted or decrypted. Defaults to an empty string.
@@ -32,7 +34,7 @@ class Cipher(ABC):
     @property
     @abstractmethod
     def rot_type(self):
-        """str: The rotation type of the cipher (e.g., 'rot_13' or 'rot_47')."""
+        """Abstract method to get the rotation type of the cipher (e.g., 'rot_13' or 'rot_47')."""
         raise NotImplementedError
 
     @abstractmethod
