@@ -21,3 +21,4 @@ The application is organized following SOLID principles, with modular classes fo
    python3 src/main.py
 
 ## Application View
+<img width="242" alt="Zrzut ekranu 2024-11-5 o 18 04 34" src="https://github.com/user-attachments/assets/38db0147-138c-429b-9c12-18ac85137c80">
