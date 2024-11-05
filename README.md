@@ -19,3 +19,5 @@ The application is organized following SOLID principles, with modular classes fo
 2. **Run application**:
    ```bash
    python3 src/main.py
+
+## Application View
