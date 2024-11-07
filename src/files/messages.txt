@@ -1,1 +1,1 @@
-{'Kuba ma fajne auto': ['Xhon zn snwar nhgb', 'rot_13']}
+{'Encrypt': ['Rapelcg', 'rot_13']}

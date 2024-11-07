@@ -11,15 +11,6 @@ The application is organized following SOLID principles, with modular classes fo
 - **pre-commit**:
 - **Github Actions**:
 
-## Setup
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Pawel-Truszkowski/cipher.git
-
-2. **Run application**:
-   ```bash
-   python3 src/main.py
-
 ## Dev Setup
 1. **Clone the repository**:
    ```bash
